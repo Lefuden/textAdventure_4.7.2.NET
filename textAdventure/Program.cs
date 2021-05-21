@@ -167,15 +167,16 @@ namespace textAdventure
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("You enter a large Hallway. The light is dim and the pillars and broken furniture is covered in dust and spiderwebs.\n" +
+                Console.WriteLine("You enter a large Hallway through the south gate.\n" +
+                                  "The light is dim and the pillars and broken furniture is covered in dust and spiderwebs.\n" +
                                   "The air is cold and feels heavy, like moments before a thunderstorm.\n" +
-                                  "This place must have been abandoned a long time ago.\nYou see two doors a few feet apart at the end of the hallway.");
+                                  "This place must have been abandoned a long time ago.\nYou see two doors, one to the west and the other to the east.");
                 controls();
 
                 if (move == "NORTH" || move == "N")
                 {
                     Console.Clear();
-                    Console.WriteLine("A lone torch fitted to a sconce in between the two doors\nbarely lights up the area enough for you to not stumble blindly.");
+                    Console.WriteLine("A lone torch fitted to a sconce. It barely lights up the area enough for you to not stumble blindly.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
@@ -442,16 +443,16 @@ namespace textAdventure
             {
                 Console.Clear();
                 Console.WriteLine("You stand on what once was a rather impressive stone bridge. Heavy winds hit you from the west.\n" +
-                                  "The middle part of the bridge has fallen apart and you see no way of getting to the other side.");
+                                  "The middle part of the bridge, to the north, has fallen apart and you see no way of getting to the other side.\n" +
+                                  "You notice something on the ground to the east.");
                 controls();
 
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
-                    Console.WriteLine("You face the heavy wind, the pressure makes it hard to breathe.");
+                    Console.WriteLine("You face the heavy wind, the pressure makes it hard to breathe. There is nothing of value.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
-                    SouthWingStairwell();
                 }
                 else if (move == "NORTH" || move == "N")
                 {
@@ -463,19 +464,19 @@ namespace textAdventure
                 else if (move == "SOUTH" || move == "S")
                 {
                     Console.Clear();
-                    Console.WriteLine("You shiver from the cold heavy winds as you turn back to the South Wing Landing.");
+                    Console.WriteLine("You shiver from the cold heavy winds as you turn back to the south wing landing.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                     SouthWingLanding();
                 }
-                else if (move == "WEST" || move == "W")
+                else if (move == "EAST" || move == "E")
                 {
                     if (Mace == 1)
                     {
                         Console.Clear();
                         Console.WriteLine("The dark towering stone walls of the fort fills you with an ominous feeling.\n" +
                                           "A fallen adventurer is slumped against the wall. The mace in his hand looks like it's made of high quality steel.\n" +
-                                          "You carefully take it, trying to not anger any potential angry spirits hanging around.");
+                                          "You carefully take it, trying not to anger any potential angry spirits hanging around.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         Mace--;
@@ -594,8 +595,9 @@ namespace textAdventure
                 else if (!dampcellarskeleton)
                 {
                     Console.Clear();
-                    Console.WriteLine("As you return to the damp cellar, you feel like leaving as soon as possible. The smell is horrendous.\n" +
-                                      "You quickly dart your eyes around the room, you see nothing that stands out.");
+                    Console.WriteLine("As you return to the damp cellar via the south door, you feel like leaving as soon as possible. The smell is horrendous.\n" +
+                                      "You quickly dart your eyes around the room, you see nothing that stands out.\n" +
+                                      "The stairwell is to the west.");
                     controls();
                     if (move == "WEST" || move == "W")
                     {
@@ -637,15 +639,16 @@ namespace textAdventure
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("You step into a large hall full of sconces along the walls.\n" +
+                Console.WriteLine("You step into a large hall via the north door. This area is full of lit sconces along the walls.\n" +
                                   "There's a large, rather impressive reinforced door to the south.\n" +
-                                  "You notice four unlit torches next to the door, curious..");
+                                  "You notice four unlit torches to the east of the door, curious..");
                 controls();
 
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
-                    Console.WriteLine("Looking over at the lit sconces, you appreciate the lack of darkness in this area.");
+                    Console.WriteLine("Looking over at the lit sconces, you appreciate the lack of darkness in this area.\n" +
+                                      "It adds a sense of security, something which is lacking in this fort.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
