@@ -33,9 +33,9 @@ namespace BattleSystem
         public Enemy(EnemyType enemyType)
         {
             this.enemyType = enemyType;
-            HP = 10;
+            HP = 15;
             Def = 2;
-            Atk = 5;
+            Atk = 6;
         }
         public EnemyType enemyType { get; set; }
         public int HP { get; set; } //hp10, def2, atk5
@@ -46,9 +46,9 @@ namespace BattleSystem
     {
         public Lich()
         {
-            HP = 30;
-            Def = 3;
-            Atk = 7;
+            HP = 40;
+            Def = 5;
+            Atk = 9;
         }
         public int HP { get; set; } //hp30, def3, atk7
         public int Def { get; set; }
@@ -56,6 +56,7 @@ namespace BattleSystem
     }
     public class CombatSystem
     {
+        public static string fdecide;
         public static void Combat(Player player, Enemy enemy)
         {
             string fightMove;
@@ -73,27 +74,37 @@ namespace BattleSystem
                     player.backpack.ShowBackpack();
                 }
                 if (fightMove == "EXIT")
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Are you sure you want to stop playing, {player.name}? There is no save function. Sorry.");
-                    Console.Write("[Y]ES/[N]O:> ");
-                    string decide = Console.ReadLine().ToUpper();
-                    if (decide == "YES" || decide == "Y")
                     {
-                        Console.Clear();
-                        Console.WriteLine($"Thank you for playing, {player.name}!");
-                        Console.WriteLine("Press Enter to exit.");
-                        Console.ReadLine();
-                        Environment.Exit(-1);
+                        while (fdecide != "YES" || fdecide != "Y" || fdecide != "NO" || fdecide != "N")
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Are you sure you want to stop playing, {player.name}? There is no save function. Sorry.");
+                            Console.Write("[Y]ES/[N]O:> ");
+                            fdecide = Console.ReadLine().ToUpper();
+
+                            if (fdecide == "YES" || fdecide == "Y")
+                            {
+                            Console.Clear();
+                            Console.WriteLine($"Thank you for playing, {player.name}!");
+                            Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
+                            Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
+                            Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
+                            Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
+                            Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
+                            Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
+                            Console.WriteLine("Press Enter to exit.");
+                            Console.ReadLine();
+                            Environment.Exit(-1);
+                            }
+                            else if (fdecide == "NO" || fdecide == "N")
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You decide against leaving. You shake your head as to say: I've come this far, there's no point in turning back now!");
+                                Console.WriteLine("Press Enter to continue.");
+                                Console.ReadLine();
+                            }
+                        }
                     }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine($"{player.name} shakes off a moment of weakness and decides to return to the adventure at hand.");
-                        Console.WriteLine("Press Enter to continue.");
-                        Console.ReadLine();
-                    }
-                }
                 Console.Clear();
                 while (!(fightMove == "FIGHT" || fightMove == "F" || fightMove == "BACKPACK" || fightMove == "B" || fightMove == "EXIT"))
                 {
@@ -118,24 +129,34 @@ namespace BattleSystem
                 }
                 if (fightMove == "EXIT")
                 {
-                    Console.Clear();
-                    Console.WriteLine($"Are you sure you want to stop playing, {player.name}? There is no save function. Sorry.");
-                    Console.Write("[Y]ES/[N]O:> ");
-                    string decide = Console.ReadLine().ToUpper();
-                    if (decide == "YES" || decide == "Y")
+                    while (fdecide != "YES" || fdecide != "Y" || fdecide != "NO" || fdecide != "N")
                     {
                         Console.Clear();
-                        Console.WriteLine($"Thank you for playing!");
-                        Console.WriteLine("Press Enter to exit.");
-                        Console.ReadLine();
-                        Environment.Exit(-1);
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Lets resume this adventure.");
-                        Console.WriteLine("Press Enter to continue.");
-                        Console.ReadLine();
+                        Console.WriteLine($"Are you sure you want to stop playing, {player.name}? There is no save function. Sorry.");
+                        Console.Write("[Y]ES/[N]O:> ");
+                        fdecide = Console.ReadLine().ToUpper();
+
+                        if (fdecide == "YES" || fdecide == "Y")
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Thank you for playing, {player.name}!");
+                            Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
+                            Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
+                            Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
+                            Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
+                            Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
+                            Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
+                            Console.WriteLine("Press Enter to exit.");
+                            Console.ReadLine();
+                            Environment.Exit(-1);
+                        }
+                        else if (fdecide == "NO" || fdecide == "N")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You decide against leaving. You shake your head as to say: I've come this far, there's no point in turning back now!");
+                            Console.WriteLine("Press Enter to continue.");
+                            Console.ReadLine();
+                        }
                     }
                 }
                 if (enemy.HP <= 0)
@@ -152,8 +173,13 @@ namespace BattleSystem
                 {
                     Console.Clear();
                     Console.WriteLine($"The {enemy.enemyType.ToString()} emanates an ominous aura as it suddenly moves faster.\n" +
-                                      $"You couldn't see what hit you as your vision fades to black. This is how your adventure ends.\n\n" +
-                                      $"GAME OVER!\n");
+                                      $"You couldn't see what hit you as your vision fades to black. This is how your adventure ends.\n\n");
+                    Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
+                    Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
+                    Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
+                    Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
+                    Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
+                    Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
                     Console.WriteLine("Press Enter to exit.");
                     Console.ReadLine();
                     Environment.Exit(-1);
@@ -166,7 +192,7 @@ namespace BattleSystem
             int playerAccuracy = Convert.ToInt32(rand.Next(1, 100));
             int DamageToEnemy;
             int DamageToPlayer;
-            Console.Write($"{player.name}:> ");
+            Console.Write($"{player.name} attack:> ");
             System.Threading.Thread.Sleep(1000);
 
             if (playerAccuracy == 1)
@@ -206,7 +232,7 @@ namespace BattleSystem
             int enemyAccuracy = Convert.ToInt32(rand.Next(1, 100));
             int DamageToEnemy;
             int DamageToPlayer;
-            Console.Write($"{enemy.enemyType.ToString()}:> ");
+            Console.Write($"{enemy.enemyType.ToString()} attack:> ");
             if (enemyAccuracy == 1)
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} overshoots its swing, throws itself off balance and smashes its skull into the wall!\n" +

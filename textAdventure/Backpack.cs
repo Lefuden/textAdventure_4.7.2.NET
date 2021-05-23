@@ -29,10 +29,10 @@ namespace backpack
                 }
                 Console.Write("\nSelect item by number:> ");
                 string str = Console.ReadLine().ToUpper();
-                //(!Char.IsDigit(str[0]) &&
-                //!(Int32.Parse(str) < backpack.Count) &&
-                //!(str == "EXIT") && !(str == "E"))
-                //(!(Char.IsDigit(str[0]) || str == "EXIT" || str == "E"))
+                                    //(!Char.IsDigit(str[0]) &&
+                                    //!(Int32.Parse(str) < backpack.Count) &&
+                                    //!(str == "EXIT") && !(str == "E"))
+                                    //(!(Char.IsDigit(str[0]) || str == "EXIT" || str == "E"))
                 while (true)
                 {
                     if (str.Length < 1)
@@ -78,13 +78,14 @@ namespace backpack
                 case Item.HPpotion:
                     Program.player.HP += 10;
                     backPack.RemoveAt(slot);
-                    Console.WriteLine("You chug the health potion. You heal 10 HP.");
+                    Console.WriteLine("You chug the Health Potion. You heal 10 HP.");
                     Console.ReadLine();
                     break;
                 case Item.WheelofCheese:
                     Program.player.HP++;
                     backPack.RemoveAt(slot);
-                    Console.WriteLine("You eat a whole wheel of cheese. You heal 1 HP.");
+                    Console.WriteLine("You eat a whole wheel of cheese. You heal 1 HP.\n" +
+                                      "Laat Dovahkiin would be proud!");
                     Console.ReadLine();
                     break;
                 default:
