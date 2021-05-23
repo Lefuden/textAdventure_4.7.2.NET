@@ -12,6 +12,7 @@ namespace BattleSystem
     }
     public class Player
     {
+        
         public Player(string name)
         {
             this.name = name; //name är parametern. this.name är objektets namn. "this" refererar till objektet som constructorn skapar.
@@ -33,29 +34,34 @@ namespace BattleSystem
         public Enemy(EnemyType enemyType)
         {
             this.enemyType = enemyType;
-            HP = 15;
-            Def = 2;
-            Atk = 6;
+            
+
+            if (enemyType == EnemyType.Skeleton)
+            {
+                HP = 15;
+                Def = 2;
+                Atk = 6;
+            }
+            else if (enemyType == EnemyType.Lich)
+            {
+                HP = 40;
+                Def = 5;
+                Atk = 9;
+            }
         }
         public EnemyType enemyType { get; set; }
         public int HP { get; set; } //hp10, def2, atk5
         public int Def { get; set; }
         public int Atk { get; set; }
     }
-    public class Lich
-    {
-        public Lich()
-        {
-            HP = 40;
-            Def = 5;
-            Atk = 9;
-        }
-        public int HP { get; set; } //hp30, def3, atk7
-        public int Def { get; set; }
-        public int Atk { get; set; }
-    }
+    
     public class CombatSystem
     {
+        public static void ClearKeyBuffer()
+        {
+            while (Console.KeyAvailable)
+                Console.ReadKey(false);
+        }
         public static string fdecide;
         public static void Combat(Player player, Enemy enemy)
         {
@@ -122,6 +128,8 @@ namespace BattleSystem
                 if (fightMove == "FIGHT" || fightMove == "F")
                 {
                     PlayerAccuracy(player, enemy);
+                    System.Threading.Thread.Sleep(1000);
+                    ClearKeyBuffer();
                 }
                 else if (fightMove == "BACKPACK" || fightMove == "B")
                 {
@@ -168,7 +176,9 @@ namespace BattleSystem
                     Console.ReadLine();
                     break;
                 }
+                
                 EnemyAccuracy(player, enemy);
+                
                 if (player.HP <= 0)
                 {
                     Console.Clear();
@@ -193,7 +203,7 @@ namespace BattleSystem
             int DamageToEnemy;
             int DamageToPlayer;
             Console.Write($"{player.name} attack:> ");
-            System.Threading.Thread.Sleep(1000);
+            
 
             if (playerAccuracy == 1)
             {

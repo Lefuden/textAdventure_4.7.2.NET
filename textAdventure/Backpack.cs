@@ -22,6 +22,7 @@ namespace backpack
             }
             else
             {
+                
                 Console.WriteLine("You open your backpack.");
                 for (int i = 0; i < backPack.Count; i++)
                 {
@@ -39,9 +40,9 @@ namespace backpack
                     {
 
                     }
-                    else if (Char.IsDigit(str[0]))
+                    else if (int.TryParse(str, out int n))
                     {
-                        if (Int32.Parse(str) <= backPack.Count)
+                        if (Int32.Parse(str) > 0 && Int32.Parse(str) <= backPack.Count)
                         {
                             UseItem(Int32.Parse(str) - 1);
                             break;

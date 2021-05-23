@@ -1,6 +1,7 @@
 ﻿using BattleSystem;
 using System;
 using backpack;
+using Puzzle;
 
 namespace textAdventure
 {
@@ -23,6 +24,7 @@ namespace textAdventure
         public static bool northstairwellskeleton = true;
         public static bool throneroomlich = true;
         public static string decide;
+        public static bool puzzleSolved = false;
 
         public static void controls()
         {
@@ -94,6 +96,7 @@ namespace textAdventure
                                       $"And so, your adventure begins.\n");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
+                    HallOfTorches();
                     Entrance();
                 }
                 else if (move == "2")
@@ -292,7 +295,7 @@ namespace textAdventure
                                       "Suddenly it starts moving towards you - Prepare for battle!");
                     CombatSystem.Combat(player, new Enemy(EnemyType.Skeleton));
                     southwingskeleton = false;
-                    controls();
+                    
                 }
                 else if (!southwingskeleton)
                 {
@@ -637,7 +640,7 @@ namespace textAdventure
                 }
             }
         }
-        public static void HallOfTorches() //ADD TORCH PUZZLE!
+        static void HallOfTorches() //ADD TORCH PUZZLE!
         {
             while (true)
             {
@@ -669,27 +672,29 @@ namespace textAdventure
                     Console.WriteLine("Enter Treasury if puzzle is solved.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
-                    Treasury(); //NEED TO BEAT PUZZLE
+                    if (puzzleSolved)
+                    {
+                        Treasury(); //NEED TO BEAT PUZZLE
+                    }
+                    else
+                    {
+                        Console.WriteLine("the door is still locked");
+                        Console.ReadLine();
+                    }
                 }
                 else if (move == "EAST" || move == "E")
                 {
-                    if (hallOfTorchesKey == 1)
+                    if (!puzzleSolved)
                     {
-                        Console.Clear();
-                        Console.WriteLine("After arranging the lit torches in a specific pattern, you hear the click of a lock.\n" +
-                                          "The small box on the table underneath the torches must've been unlocked!" +
-                                          "You open the box and find a small key!\n" +
-                                          "You pocket it.");
-                        Console.WriteLine("Press Enter to continue.");
-                        Console.ReadLine();
-                        hallOfTorchesKey--;
+                        Puzzle.Puzzle.controlPuzzle();
                     }
-                    else if (hallOfTorchesKey == 0)
+                    else if (puzzleSolved)
                     {
                         Console.Clear();
                         Console.WriteLine("There is nothing else of value.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
+                        
                     }
                 }
             }

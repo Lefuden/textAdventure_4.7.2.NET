@@ -10,40 +10,58 @@ namespace Puzzle
 {
     public class Puzzle
     {
-        public List<Torch> TorchPuzzle = new List<Torch>();
+        public static bool[] torch = { false, false, false, false };
 
-        public enum Torch
-        {
-            t1,
-            t2,
-            t3,
-            t4
-        }
-        public static string pdecide;
-        public static string pmove;
+        
+
+        public static string str;
+        public static string decide;
         public static void controlPuzzle()
         {
+            Console.Clear();
+            Console.WriteLine("pussel startar");
             Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [STOP] [EXIT]");
             Console.Write("Input:> ");
-            pmove = Console.ReadLine();
-            pmove = pmove.ToUpper();
-            if (pmove == "STOP" || pmove == "S")
+            str = Console.ReadLine().ToUpper();
+
+            while (true)
             {
-                textAdventure.Program.HallOfTorches();
-            }
-            if (pmove == "EXIT")
-            {
-                while (pdecide != "YES" || pdecide != "Y" || pdecide != "NO" || pdecide != "N")
+                if (str.Length < 1)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Are you sure you want to stop playing? There is no save function. Sorry.");
-                    Console.Write("[Y]ES/[N]O:> ");
-                    pdecide = Console.ReadLine().ToUpper();
-
-                    if (pdecide == "YES" || pdecide == "Y")
+                    Console.WriteLine("Invalid input");//bad input
+                }
+                else if (int.TryParse(str, out int n))
+                {
+                    if (Int32.Parse(str) > 0 && Int32.Parse(str) <= 4)
+                    {
+                        if (torch[Int32.Parse(str) - 1] == false)
+                        {
+                            torch[Int32.Parse(str) - 1] = true;
+                            Console.WriteLine($"Torch {str} is lit");
+                        }
+                        else
+                        {
+                            torch[Int32.Parse(str) - 1] = false;
+                            Console.WriteLine($"Torch {str} is put out");
+                        }
+                    }else
                     {
                         Console.Clear();
-                        Console.WriteLine($"Thank you for playing!");
+                        Console.WriteLine("Invalid input");//bad input
+                    }
+                }
+                else if (str == "EXIT" || str == "E")
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Are you sure you want to stop playing, {Program.player.name}? There is no save function. Sorry.");
+                    Console.Write("[Y]ES/[N]O:> ");
+                    decide = Console.ReadLine().ToUpper();
+
+                    if (decide == "YES" || decide == "Y")
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Thank you for playing, {Program.player.name}!");
                         Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
                         Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
                         Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
@@ -54,7 +72,7 @@ namespace Puzzle
                         Console.ReadLine();
                         Environment.Exit(-1);
                     }
-                    else if (pdecide == "NO" || pdecide == "N")
+                    else if (decide == "NO" || decide == "N")
                     {
                         Console.Clear();
                         Console.WriteLine("You decide against leaving. You shake your head as to say: I've come this far, there's no point in turning back now!");
@@ -62,64 +80,48 @@ namespace Puzzle
                         Console.ReadLine();
                     }
                 }
+                else if (str == "STOP" || str == "S")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input");//bad input
+                }
+                if (torch[0] && !torch[1] && torch[2] && !torch[3])
+                {
+                    Console.Clear();
+                    Console.WriteLine("After arranging the lit torches in a specific pattern, you hear the click of a lock.\n" +
+                                      "The small box on the table underneath the torches must've been unlocked!" +
+                                      "You open the box and find a small key!\n" +
+                                      "You pocket it.");
+                    Console.WriteLine("Press Enter to continue.");
+                    Console.ReadLine();
+
+                    Program.puzzleSolved = true;
+
+
+                    break;
+                }
+                foreach (bool b in torch)
+                {
+                    if (b)
+                    {
+                        Console.Write("1 ");
+                    }
+                    else
+                    {
+                        Console.Write("0 ");
+                    }
+                }
+                
+                Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [STOP] [EXIT]");
+                Console.Write("Input:> ");
+
+                str = Console.ReadLine().ToUpper();
+                Console.Clear();
             }
         }
-
-        /*          while (true) // while (List<Torch> TorchPuzzle != O,O,X,X)
-                    {
-                        if (pmove == "TORCH1" || pmove == "1")
-                        {
-                            if (t1 == 0)
-                            {
-                                replace index 0 in list Torch to 1
-                                Console.WriteLine("You light the first torch.");
-                            }
-                            else if (t1 == 1)
-                            {
-                                replace index 0 in list Torch to 0
-                                Console.WriteLine("You <word> the first torch.");
-                            }
-                        }
-                        else if (pmove == "TORCH2" || pmove == "2")
-                        {
-                            if (t2 == 0)
-                            {
-                                replace index 1 in list Torch to 1
-                                Console.WriteLine("You light the second torch.");
-                            }
-                            else if (t2 == 1)
-                            {
-                                replace index 1 in list Torch to 0
-                                Console.WriteLine("You <word> the second torch.");
-                            }
-                        }
-                        else if (pmove == "TORCH3" || pmove == "3")
-                        {
-                            if (t3 == 0)
-                            {
-                                replace index 2 in list Torch to 1
-                                Console.WriteLine("You light the third torch.");
-                            }
-                            else if (t3 == 1)
-                            {
-                                replace index 2 in list Torch to 0
-                                Console.WriteLine("You <word> the third torch.");
-                            }
-                        }
-                        if (pmove == "TORCH4" || pmove == "4")
-                        {
-                            if (t4 == 0)
-                            {
-                                replace index 3 in list Torch to 1
-                                Console.WriteLine("You light the fourth torch.");
-                            }
-                            else if (t4 == 1)
-                            {
-                                replace index 3 in list Torch to 0
-                                Console.WriteLine("You <word> the fourth torch.");
-                            }
-                        }
-                    }
-        */
     }
 }
