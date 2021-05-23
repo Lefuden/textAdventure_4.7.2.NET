@@ -65,53 +65,61 @@ namespace Puzzle
             }
         }
 
-            /*            while (true) // while (List<Torch> TorchPuzzle != O,O,X,X)
+        /*          while (true) // while (List<Torch> TorchPuzzle != O,O,X,X)
+                    {
+                        if (pmove == "TORCH1" || pmove == "1")
                         {
-                            if (pmove == "TORCH1" || pmove == "1")
+                            if (t1 == 0)
                             {
-                                if (t1 == 1)
-                                {
-                                    //change torch 1 to lit - change char1 in the list to X
-                                }
-                                else if (t1 == 0)
-                                {
-                                    //change torch 1 to unlit change char1 in the list to O
-                                }
+                                replace index 0 in list Torch to 1
+                                Console.WriteLine("You light the first torch.");
                             }
-                            else if (pmove == "TORCH2" || pmove == "2")
+                            else if (t1 == 1)
                             {
-                                if (t2 == 1)
-                                {
-                                    //change torch 2 to lit
-                                }
-                                else if (t2 == 0)
-                                {
-                                    //change torch 2 to unlit
-                                }
-                            }
-                            else if (pmove == "TORCH3" || pmove == "3")
-                            {
-                                if (t3 == 1)
-                                {
-                                    //change torch 3 to lit
-                                }
-                                else if (t3 == 0)
-                                {
-                                    //change torch 3 to unlit
-                                }
-                            }
-                            if (pmove == "TORCH4" || pmove == "4")
-                            {
-                                if (t4 == 1)
-                                {
-                                    //change torch 4 to lit
-                                }
-                                else if (t4 == 0)
-                                {
-                                    //change torch 4 to unlit
-                                }
+                                replace index 0 in list Torch to 0
+                                Console.WriteLine("You <word> the first torch.");
                             }
                         }
-            */
-        }
+                        else if (pmove == "TORCH2" || pmove == "2")
+                        {
+                            if (t2 == 0)
+                            {
+                                replace index 1 in list Torch to 1
+                                Console.WriteLine("You light the second torch.");
+                            }
+                            else if (t2 == 1)
+                            {
+                                replace index 1 in list Torch to 0
+                                Console.WriteLine("You <word> the second torch.");
+                            }
+                        }
+                        else if (pmove == "TORCH3" || pmove == "3")
+                        {
+                            if (t3 == 0)
+                            {
+                                replace index 2 in list Torch to 1
+                                Console.WriteLine("You light the third torch.");
+                            }
+                            else if (t3 == 1)
+                            {
+                                replace index 2 in list Torch to 0
+                                Console.WriteLine("You <word> the third torch.");
+                            }
+                        }
+                        if (pmove == "TORCH4" || pmove == "4")
+                        {
+                            if (t4 == 0)
+                            {
+                                replace index 3 in list Torch to 1
+                                Console.WriteLine("You light the fourth torch.");
+                            }
+                            else if (t4 == 1)
+                            {
+                                replace index 3 in list Torch to 0
+                                Console.WriteLine("You <word> the fourth torch.");
+                            }
+                        }
+                    }
+        */
     }
+}
